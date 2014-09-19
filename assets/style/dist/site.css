@@ -776,3 +776,7 @@ A place for module-specific styles.  *//*
 Theme
 
 A place for site-wide styles.  */
+
+.container {
+	background-color: red;
+}
