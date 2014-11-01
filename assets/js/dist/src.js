@@ -140,7 +140,7 @@ $(document).ready(function() {
 		$(".menu-button").mouseenter(function () {
 			$(".menu-button").stop();
 			if (fadeOutTimeout) {
-				clearInterval(fadeOutTimeout);
+				clearTimeout(fadeOutTimeout);
 			}
 		});
 
