@@ -2,3 +2,335 @@
 Module
 
 A place for module-specific styles.  */
+
+
+
+/*type stuff*/
+
+
+
+@font-face {
+    font-family: 'playground_regularregular';
+    src: url('assets/fonts/playground-regular-webfont.eot');
+    src: url('assets/fonts/playground-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/playground-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/playground-regular-webfont.woff') format('woff'),
+         url('assets/fonts/playground-regular-webfont.ttf') format('truetype'),
+         url('assets/fonts/playground-regular-webfont.svg#playground_regularregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'playground_boldbold';
+    src: url('assets/fonts/playground-bold-webfont.eot');
+    src: url('assets/fonts/playground-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/playground-bold-webfont.woff2') format('woff2'),
+         url('assets/fonts/playground-bold-webfont.woff') format('woff'),
+         url('assets/fonts/playground-bold-webfont.ttf') format('truetype'),
+         url('assets/fonts/playground-bold-webfont.svg#playground_boldbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: "playground";
+	font-size: 12px;
+	line-height: 20px;
+}
+
+h2 {
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: blue;
+}
+
+.tags {
+	color: #bbbec0;
+}
+
+.tags a {
+	color: #bbbec0;
+	text-decoration: none;
+}
+
+.tags a:hover {
+	text-decoration: underline;
+}
+
+.tags li {
+	display: inline;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+/*Menu module*/
+
+.menu-button {
+	/*position: absolute;*/
+	position: fixed;
+	/width: 90px;
+	/height: 90px;
+	/background-color: blue;
+	cursor: pointer;
+	/display: none;
+	z-index: 100;
+}
+
+#work-button {
+	bottom: 5%;
+	left: 50%;
+	margin-left: -50px;
+}
+
+#blog-button {
+	top: 10%;
+	right: 15%;
+}
+
+#store-button {
+	top: 50%;
+	left: 15%;
+	margin-top: -50px;
+}
+
+
+
+
+
+/*Header*/
+
+/*#header-wrapper {
+	width: 100%;
+	position: fixed;
+}
+
+#header {
+	position: relative;
+	width: 1020px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}*/
+
+/*#title {
+	font-size: 16px;
+	font-weight: bold;
+}
+*/
+
+#title {
+	font-size: 16px;
+	font-weight: bold;
+	position: fixed;
+	text-align: center;
+	width: 100px;
+	top: 30px;
+	left: 10%;
+	z-index: 10;
+}
+
+#section-title {
+	font-size: 16px;
+	text-decoration: underline;
+	position: fixed;
+	text-align: center;
+	width: 100px;
+	top: 30px;
+	left: 50%;
+	margin-left: -50px;
+	z-index: 10;
+
+}
+
+#about-button {
+	position: fixed;
+	text-align: center;
+	width: 100px;
+	top: 75px;
+	left: 10%;
+	z-index: 10;
+}
+
+#twitter-button {
+	position: fixed;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	margin-left: 25px;
+	margin-bottom: 25px;
+	bottom: 5%;
+	left: 10%;
+	z-index: 10;
+	/background-color: yellow;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+/*Other stuff*/
+
+.page {
+	width: 1020px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	/background-color: yellow;
+	height: 100%;
+}
+
+.post {
+	position: relative;
+	width: 500px;
+	height: 500px;
+	/background-color: blue;
+	/margin: 50px;
+	margin-top: 80px;
+	margin-bottom: 80px;
+	text-align: center;
+}
+
+.images {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.images img {
+	position: absolute;
+}
+
+
+
+
+.post.office-of-now {
+	float: right;
+	width: 690px;
+	height: 550px;
+}
+
+.post.office-of-now .images {
+	width: 690px;
+	height: 460px;
+}
+
+.post.office-of-now .images .image1 {
+	right: 0px;
+	top: 0px;
+}
+
+.post.office-of-now .images .image2 {
+	left: 0px;
+	bottom: 0px;
+}
+
+
+.post.messenger {
+	float: left;
+	width: 660px;
+	height: 760px;
+	/background-color: red;
+}
+
+.post.messenger .images {
+	width: 660px;
+	height: 670px;
+	/background-color: yellow;
+}
+
+.post.messenger .images .image1 {
+	left: 0px;
+	top: 135px;
+}
+
+.post.messenger .images .image2 {
+	left: 90px;
+	top: 0px;
+}
+
+.post.messenger .images .image3 {
+	left: 110px;
+	bottom: 0px;
+}
+
+
+
+
+.post.triennial {
+	float: right;
+	width: 660px;
+	height: 780px;
+	/background-color: red;
+}
+
+.post.triennial .images {
+	width: 660px;
+	height: 690px;
+	/background-color: yellow;
+}
+
+.post.triennial .images .image1 {
+	left: 100px;
+	top: 0px;
+}
+
+.post.triennial .images .image2 {
+	left: 130px;
+	bottom: 0px;
+}
+
+.post.triennial .images .image3 {
+	left: 0px;
+	bottom: 135px;
+}
+
+
+
+
+.post.triennial {
+	float: right;
+}
+
+
+.image:hover {
+	z-index: 8;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
