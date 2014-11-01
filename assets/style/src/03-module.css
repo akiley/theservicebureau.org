@@ -219,6 +219,8 @@ a:hover {
 .images {
 	position: relative;
 	margin-bottom: 20px;
+	width: 720px;
+	height: 720px;
 }
 
 .images img {
@@ -234,6 +236,7 @@ a:hover {
 	height: 550px;
 }
 
+/*
 .post.office-of-now .images {
 	width: 690px;
 	height: 460px;
@@ -247,7 +250,7 @@ a:hover {
 .post.office-of-now .images .image2 {
 	left: 0px;
 	bottom: 0px;
-}
+}*/
 
 
 .post.messenger {
@@ -257,6 +260,8 @@ a:hover {
 	/background-color: red;
 }
 
+
+/*
 .post.messenger .images {
 	width: 660px;
 	height: 670px;
@@ -276,7 +281,7 @@ a:hover {
 .post.messenger .images .image3 {
 	left: 110px;
 	bottom: 0px;
-}
+}*/
 
 
 
@@ -288,6 +293,7 @@ a:hover {
 	/background-color: red;
 }
 
+/*
 .post.triennial .images {
 	width: 660px;
 	height: 690px;
@@ -307,7 +313,7 @@ a:hover {
 .post.triennial .images .image3 {
 	left: 0px;
 	bottom: 135px;
-}
+}*/
 
 
 
