@@ -96,11 +96,10 @@ $(document).ready(function() {
                 Ensure images are not cover
                 the same area in a pile. */
                 ensureNoOverlap();
-                console.log(img);
+
                 function ensureNoOverlap () {
-                    console.log('ensureNoOverlap');
                     piles[pileId].forEach(function (i) {
-                        if ((placement.top === i.top) |
+                        if ((placement.top === i.top) &
                             (placement.left === i.left)) {
                             placement = placeImage();
                             ensureNoOverlap();
