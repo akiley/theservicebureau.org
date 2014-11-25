@@ -2,30 +2,21 @@
 
 
 $(document).ready(function() {
-
-
-	$("#store-button").hover(function(){
-		$(".menu-button").stop().css('display','block');
-	});
-
-
-	// to make buttons appear and persist for 2000 milliseconds on scroll
-	
-<<<<<<< Updated upstream
-	$.fn.scrollStopped = function(callback) {
-		$(this).scroll(function(){
-			var self = this, $this = $(self);
-			if ($this.data('scrollTimeout')) {
-				clearTimeout($this.data('scrollTimeout'));
-			}
-			$this.data('scrollTimeout', setTimeout(callback,250,self));
-		});
+    
+    $.fn.scrollStopped = function(callback) {
+        $(this).scroll(function(){
+            var self = this, $this = $(self);
+            if ($this.data('scrollTimeout')) {
+                clearTimeout($this.data('scrollTimeout'));
+            }
+            $this.data('scrollTimeout', setTimeout(callback,250,self));
+        });
     };
 
     // Layout image piles.
     layoutImagePiles();
 
-	// Setup the menu interaction.
+    // Setup the menu interaction.
     setupMenuInteraction();
 
     function layoutImagePiles () {
@@ -123,103 +114,50 @@ $(document).ready(function() {
     }
 
     function setupMenuInteraction () {
-		// This is the timer that will be
-		// used to have the menus fade out.
-		// This can be cleared by some other
-		// input. See below.
-		var fadeOutTimeout;
+        // This is the timer that will be
+        // used to have the menus fade out.
+        // This can be cleared by some other
+        // input. See below.
+        var fadeOutTimeout;
 
-		// Menus animate out on start.
-		fadeMenuOut();
+        // Menus animate out on start.
+        fadeMenuOut();
 
-		// Menus fade in when scrolling.
-		$(window).scroll(function() {
-			fadeMenuIn();
-		});
+        // Menus fade in when scrolling.
+        $(window).scroll(function() {
+            fadeMenuIn();
+        });
 
-		// Menus fade out when you stop scrolling.
-		$(window).scrollStopped(function(){
-			fadeMenuOut();
-		});
+        // Menus fade out when you stop scrolling.
+        $(window).scrollStopped(function(){
+            fadeMenuOut();
+        });
 
-		// Hovering over a menu clears the
-		// interval that is being waited on
-		// for the fadeMenuOut to happen.
-		$(".menu-button").mouseenter(function () {
-			$(".menu-button").stop();
-			if (fadeOutTimeout) {
-				clearTimeout(fadeOutTimeout);
-			}
-		});
+        // Hovering over a menu clears the
+        // interval that is being waited on
+        // for the fadeMenuOut to happen.
+        $(".menu-button").mouseenter(function () {
+            $(".menu-button").stop();
+            if (fadeOutTimeout) {
+                clearTimeout(fadeOutTimeout);
+            }
+        });
 
-		// Unhovering a menu reinitializes the
-		// fade out timer.
-		$(".menu-button").mouseleave(function () {
-			fadeMenuOut();
-		});
+        // Unhovering a menu reinitializes the
+        // fade out timer.
+        $(".menu-button").mouseleave(function () {
+            fadeMenuOut();
+        });
 
-		function fadeMenuOut () {
-			$(".menu-button").stop();
-			fadeOutTimeout = setTimeout(function () {
-				$(".menu-button").fadeOut(500);
-			}, 2000);
-		}
+        function fadeMenuOut () {
+            $(".menu-button").stop();
+            fadeOutTimeout = setTimeout(function () {
+                $(".menu-button").fadeOut(500);
+            }, 2000);
+        }
 
-		function fadeMenuIn () {
-			$(".menu-button").stop().fadeIn(50);
-		}
+        function fadeMenuIn () {
+            $(".menu-button").stop().fadeIn(50);
+        }
     }
-=======
-	$.fn.scrollStopped = function(callback) {           
-	        $(this).scroll(function(){
-	            var self = this, $this = $(self);
-	            if ($this.data('scrollTimeout')) {
-	              clearTimeout($this.data('scrollTimeout'));
-	            }
-	            $this.data('scrollTimeout', setTimeout(callback,250,self));
-	        });
-	    };
-
-	$(function () {
-		$(".menu-button").delay(2000).fadeOut(500);
-	});
-
-	$(window).scrollStopped(function(){
-	    $(".menu-button").stop().delay(2000).fadeOut(500);
-	});                   
-
-	$(window).scroll(function() {
-		$(".menu-button").stop().fadeIn(50);
-	});
-
-
-
-
-
-
-
-
-	// to make buttons grow
-
-	// $("#store-button").hover(function(){
- //  		$(this).animate({height:"150", width:"150", marginLeft:"-25", marginTop:"-75"}, 50);
- //  		},
-	// 	function(){
- //  		$(this).animate({height:"100", width:"100", marginLeft:"0", marginTop:"-50"}, 50);
-	// });
-
-
-
-	
-
-
-
-
-
->>>>>>> Stashed changes
 });
-
-
-
-
-
