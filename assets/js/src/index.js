@@ -1,4 +1,11 @@
 // write JavaScript here
+DEBUG = true;
+
+function debug(str) {
+    if (DEBUG) {
+        console.log(str);
+    }
+}
 
 
 $(document).ready(function() {
@@ -125,11 +132,13 @@ $(document).ready(function() {
 
         // Menus fade in when scrolling.
         $(window).scroll(function() {
+            debug('Scrolling.');
             fadeMenuIn();
         });
 
         // Menus fade out when you stop scrolling.
         $(window).scrollStopped(function(){
+            debug('Stopped scrolling.');
             fadeMenuOut();
         });
 
@@ -137,8 +146,10 @@ $(document).ready(function() {
         // interval that is being waited on
         // for the fadeMenuOut to happen.
         $(".menu-button").mouseenter(function () {
+            debug('Hovering menu button.');
             $(".menu-button").stop();
             if (fadeOutTimeout) {
+                debug('Stopping the menus from fading.');
                 clearTimeout(fadeOutTimeout);
             }
         });
@@ -146,6 +157,7 @@ $(document).ready(function() {
         // Unhovering a menu reinitializes the
         // fade out timer.
         $(".menu-button").mouseleave(function () {
+            debug('No longer hovering menu item.');
             fadeMenuOut();
         });
 
