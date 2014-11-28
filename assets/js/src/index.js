@@ -147,11 +147,11 @@ $(document).ready(function() {
 
             var recognizers = [
                 [ Hammer.Pan,
-                  { direction: Hammer.DIRECTION_VERTICAL } ]
+                  { direction: Hammer.DIRECTION_ALL } ]
             ];
             var toucher = new Hammer(
                 document.body,
-                { touchAction: 'pan-y',
+                { touchAction: 'pan',
                   preset: recognizers }
             );
 
@@ -179,18 +179,14 @@ $(document).ready(function() {
                 // the previous scroll position
                 // will tell us whether the user
                 // is moving up or down the page.
-                var dy = document.body.scrollTop - previousScrollPosition;
+                var deltaY = document.body.scrollTop - previousScrollPosition;
 
-                if (dy < 0) {
+                if (deltaY < 0) {
                     debug('Scrolling up.');
-                    if (!menuIn) {
-                        fadeMenuIn();
-                    }
+                    fadeMenuIn();
                 } else {
                     debug('Scrolling down.');
-                    if (menuIn) {
-                        fadeMenuOut();
-                    }
+                    fadeMenuOut();
                 }
 
                 // Update the previous scroll
@@ -204,13 +200,17 @@ $(document).ready(function() {
         }
 
         function fadeMenuOut () {
-            menu.stop().fadeOut(80);
-            menuIn = false;
+            if (menuIn) {
+                menu.stop().fadeOut(80);
+                menuIn = false;
+            }
         }
 
         function fadeMenuIn () {
-            menu.stop().fadeIn(80);
-            menuIn = true;
+            if (!menuIn) {
+                menu.stop().fadeIn(80);
+                menuIn = true;
+            }
         }
     }
 });
