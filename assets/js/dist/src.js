@@ -25,7 +25,7 @@ $(document).ready(function() {
     layoutImagePiles();
 
     // Setup the menu interaction.
-    setupMenuInteraction();
+    setupMenuInteraction(Modernizr.touch);
 
     function layoutImagePiles () {
         var piles = {};
@@ -121,56 +121,97 @@ $(document).ready(function() {
         });
     }
 
-    function setupMenuInteraction () {
-        // This is the timer that will be
-        // used to have the menus fade out.
-        // This can be cleared by some other
-        // input. See below.
-        var fadeOutTimeout;
+    function setupMenuInteraction (touchBool) {
+        var menu = $('.menu-button');
+        // Is the menu showing? Keep track
+        // so you don't continually try to show
+        // it when its shown, or conversely,
+        // continually hide it when its already
+        // in a hidden state.
+        var menuIn = true;
 
-        // Menus animate out on start.
-        fadeMenuOut();
+        if (touchBool) {
+            /* Browser supports touch, hook into
+               document.body touch events. */
+            
+            setupTouchMenuInteraction();
+            
+        } else {
+            /* No touch events, hook into the
+               window scroll event.*/
 
-        // Menus fade in when scrolling.
-        $(window).scroll(function() {
-            debug('Scrolling.');
-            fadeMenuIn();
-        });
+            setupScrollMenuInteraction();
+        }
 
-        // Menus fade out when you stop scrolling.
-        $(window).scrollStopped(function(){
-            debug('Stopped scrolling.');
-            fadeMenuOut();
-        });
+        function setupTouchMenuInteraction () {
+            debug("Touch is the input to watch.");
 
-        // Hovering over a menu clears the
-        // interval that is being waited on
-        // for the fadeMenuOut to happen.
-        $(".menu-button").mouseenter(function () {
-            debug('Hovering menu button.');
-            $(".menu-button").stop();
-            if (fadeOutTimeout) {
-                debug('Stopping the menus from fading.');
-                clearTimeout(fadeOutTimeout);
-            }
-        });
+            var recognizers = [
+                [ Hammer.Pan,
+                  { direction: Hammer.DIRECTION_VERTICAL } ]
+            ];
+            var toucher = new Hammer(
+                document.body,
+                { touchAction: 'pan-y',
+                  preset: recognizers }
+            );
 
-        // Unhovering a menu reinitializes the
-        // fade out timer.
-        $(".menu-button").mouseleave(function () {
-            debug('No longer hovering menu item.');
-            fadeMenuOut();
-        });
+            toucher.on('panup', function (ev) {
+                debug('Detected panup');
+                fadeMenuOut();
+            });
+
+            toucher.on('pandown', function (ev) {
+                debug('Detected pandown');
+                fadeMenuIn();
+            });
+        }
+
+        function setupScrollMenuInteraction () {
+            debug("Scrolling is the input to watch.");
+
+            // Track previous position in order
+            // to determine direction of scrolling.
+            var previousScrollPosition = 0;
+
+
+            var update = function() {
+                // Current scroll position minus
+                // the previous scroll position
+                // will tell us whether the user
+                // is moving up or down the page.
+                var dy = document.body.scrollTop - previousScrollPosition;
+
+                if (dy < 0) {
+                    debug('Scrolling up.');
+                    if (!menuIn) {
+                        fadeMenuIn();
+                    }
+                } else {
+                    debug('Scrolling down.');
+                    if (menuIn) {
+                        fadeMenuOut();
+                    }
+                }
+
+                // Update the previous scroll
+                // position to the current value.
+                previousScrollPosition = document.body.scrollTop;
+            };
+
+            
+            // Run the update function when scrolled.
+            $(window).scroll(update);
+        }
 
         function fadeMenuOut () {
-            $(".menu-button").stop();
-            fadeOutTimeout = setTimeout(function () {
-                $(".menu-button").fadeOut(500);
-            }, 2000);
+            menu.stop().fadeOut(80);
+            menuIn = false;
         }
 
         function fadeMenuIn () {
-            $(".menu-button").stop().fadeIn(50);
+            menu.stop().fadeIn(80);
+            menuIn = true;
         }
     }
 });
