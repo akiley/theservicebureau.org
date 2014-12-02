@@ -168,11 +168,14 @@ $(document).ready(function() {
                   preset: recognizers }
             );
 
-            var previousDeltaY = 0;
-
             toucher.on('panup', function (ev) {
                 debug('Detected panup');
-                fadeMenuOut();
+                if (withinBuffer()) {
+                    debug('Within Top Page Buffer.');
+                    fadeMenuIn();
+                } else {
+                    fadeMenuOut();
+                }
             });
 
             toucher.on('pandown', function (ev) {
@@ -196,12 +199,17 @@ $(document).ready(function() {
                 // is moving up or down the page.
                 var deltaY = document.body.scrollTop - previousScrollPosition;
 
-                if (deltaY < 0) {
-                    debug('Scrolling up.');
+                if (withinBuffer()) {
+                    debug('Within Top Page Buffer.');
                     fadeMenuIn();
                 } else {
-                    debug('Scrolling down.');
-                    fadeMenuOut();
+                    if (deltaY < 0) {
+                        debug('Scrolling up.');
+                        fadeMenuIn();
+                    } else {
+                        debug('Scrolling down.');
+                        fadeMenuOut();
+                    }
                 }
 
                 // Update the previous scroll
@@ -212,6 +220,18 @@ $(document).ready(function() {
             
             // Run the update function when scrolled.
             $(window).scroll(update);
+        }
+
+        function withinBuffer () {
+            /* Returns boolean.
+               If inside the buffer, true.
+               if not, false. */
+
+            // Defines the number of pixels from
+            // the top where the menu always shows.
+            var pageTopBuffer = 100;
+
+            return window.scrollY < pageTopBuffer;
         }
 
         function fadeMenuOut () {
